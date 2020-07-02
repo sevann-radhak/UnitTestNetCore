@@ -8,6 +8,11 @@ namespace UnitTestNetCore.Test
     {
         public List<string> Errors { get; set; }
 
+        public Person GetPerson(int id)
+        {
+            return new Person();
+        }
+
         public bool IsValid(Person model)
         {
             Errors = new List<string>();

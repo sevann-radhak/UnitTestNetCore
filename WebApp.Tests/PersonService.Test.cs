@@ -60,5 +60,25 @@ namespace WebApp.Tests
 
             Assert.IsNotNull(result.ViewData["MessageError"]);
         }
+
+        [TestMethod]
+        public void Person_age_is_18_or_higher_returns_true()
+        {
+            //Person person = new Person { Age = 18 };
+            bool response = _service.AgeIs18orHigher(new Person { Age = 18 });
+
+            Assert.IsTrue(response);
+        }
+
+        [TestMethod]
+        public void Person_age_is_less_than_18_returns_false()
+        {
+            //Person person = new Person { Age = 18 };
+            bool response = _service.AgeIs18orHigher(new Person { Age = 17 });
+
+            Assert.IsFalse(response);
+        }
+
+
     }
 }

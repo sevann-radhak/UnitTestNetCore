@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnitTestNetCore.Models;
 
@@ -33,6 +34,11 @@ namespace UnitTestNetCore.Services
         public Person GetPerson(int id)
         {
             return new Person { Id = id, Name = $"Person: {id}", Age = id * 2};
+        }
+
+        public bool AgeIs18orHigher(Person person)
+        {
+            return person.Age >= 18;
         }
     }
 }
