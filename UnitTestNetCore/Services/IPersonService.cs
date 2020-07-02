@@ -7,5 +7,6 @@ namespace UnitTestNetCore.Services
     {
         List<string> Errors { get; set; }
         bool IsValid(Person model);
+        public Person GetPerson(int id);
     }
 }

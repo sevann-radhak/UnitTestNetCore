@@ -39,7 +39,6 @@ namespace UnitTestNetCore.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-
         public ViewResult CreatePerson(Person person)
         {
             if(!_personService.IsValid(person))
@@ -49,6 +48,16 @@ namespace UnitTestNetCore.Controllers
                 return View();
             }
             return View();
+        }
+
+        public IActionResult GetPerson(int id)
+        {
+            if(id <= 0)
+            {
+                throw new ArgumentException("Id can not be less than 1");
+            }
+            
+            return Ok(_personService.GetPerson(id));
         }
     }
 }

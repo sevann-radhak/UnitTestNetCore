@@ -29,5 +29,10 @@ namespace UnitTestNetCore.Services
 
             return !Errors.Any();
         }
+
+        public Person GetPerson(int id)
+        {
+            return new Person { Id = id, Name = $"Person: {id}", Age = id * 2};
+        }
     }
 }

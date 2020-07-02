@@ -1,4 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using System.Collections.Generic;
 using UnitTestNetCore.Controllers;
 using UnitTestNetCore.Models;
 using UnitTestNetCore.Services;
@@ -49,11 +51,12 @@ namespace WebApp.Tests
         [TestMethod]
         public void Create_Person_invalid_assings_ViewBag_MessageError()
         {
-            HomeController controller = new HomeController(_service);
-
-            Person person = new Person { Name = "Sevann", Age = -1 };
-
-            var result = controller.CreatePerson(person);
+            var mockPersonService = new Mock<IPersonService>();
+            mockPersonService.Setup(ps => ps.IsValid(new Person())).Returns(false);
+            mockPersonService.SetupGet(ps => ps.Errors).Returns(new List<string> { "Error"});
+            
+            HomeController controller = new HomeController(mockPersonService.Object);
+            var result = controller.CreatePerson(new Person());
 
             Assert.IsNotNull(result.ViewData["MessageError"]);
         }
